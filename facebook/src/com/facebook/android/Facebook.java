@@ -111,6 +111,8 @@ public class Facebook {
     private boolean publishSuccess = false;
     private boolean shouldAutoPublishInstall = true;
     private AutoPublishAsyncTask mAutoPublishAsyncTask = null;
+    
+    private FbDialog mFbDialog;
 
     /**
      * Constructor for Facebook object.
@@ -837,10 +839,35 @@ public class Facebook {
             Util.showAlert(context, "Error",
                     "Application requires permission to access the Internet");
         } else {
-            new FbDialog(context, url, listener).show();
+        	mFbDialog = new FbDialog(context, url, listener);
+        	mFbDialog.show();
         }
     }
-
+    
+    /**
+     * @return true if the facebook dialog is showing.
+     */
+    public boolean isDialogShowing(){
+    	if(mFbDialog != null) {
+    		return mFbDialog.isShowing();
+    	}
+    	return false;
+    }
+    
+    /**
+     * @return the instance of the facebook dialog.
+     */
+    public FbDialog getFbDialog() {
+    	return mFbDialog;
+    }
+    
+    /**
+     * @param fbDialog The facebook dialog to set.
+     */
+    public void setFbDialog(FbDialog fbDialog) {
+    	mFbDialog = fbDialog;
+    }
+    
     /**
      * @return boolean - whether this object has an non-expired session token
      */

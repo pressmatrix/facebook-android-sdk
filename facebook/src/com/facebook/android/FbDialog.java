@@ -16,6 +16,7 @@
 
 package com.facebook.android;
 
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -25,7 +26,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -63,7 +63,7 @@ public class FbDialog extends Dialog {
         mUrl = url;
         mListener = listener;
     }
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,6 +126,20 @@ public class FbDialog extends Dialog {
         webViewContainer.setPadding(margin, margin, margin, margin);
         webViewContainer.addView(mWebView);
         mContent.addView(webViewContainer);
+    }
+    
+    /** 
+     * @return the webview of the facebook dialog. 
+     */
+    public WebView getWebView() {
+    	return mWebView;
+    }
+    
+    /**
+     * @return the listener of the facebook dialog.
+     */
+    public DialogListener getListener() {
+    	return mListener;
     }
 
     private class FbWebViewClient extends WebViewClient {
